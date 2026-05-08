@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="RPGishka/RPGishka.vcxproj" Id="08e915ec-8f69-4f55-83fc-31b5ae3eab5d" />
+</Solution>
