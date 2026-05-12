@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 
-
+using namespace std;
 
 void Sesuriti() {
 
@@ -51,7 +51,7 @@ void Sesuriti() {
 	{
 		if (GuardGreed < 30)
 		{
-			std::cout << "You can't give a bribe and enter the city";
+			std::cout << "You can't give a bribe and enter the city\n The guard called for help";
 		}
 		else
 		{
@@ -60,28 +60,109 @@ void Sesuriti() {
 			std::cout << "You can give a bribe\nYours Gold is " << gold << ".\nDo you want to pay a bribe?\nThe cost of the bribe is "<< GuardBribe;
 			std::string G;
 			std::cout << "\nChoose yes or no\n";
-			std::cin >> G;
+			while (G != "Yes" || G != "No") {
 
-			if (G=="Yes") 
-				{
-				if (gold >= GuardBribe)
+				std::cin >> G;
+
+				if (G=="Yes") 
 					{
-					gold -= GuardBribe;
-					std::cout << "You have entered the city";
+					if (gold >= GuardBribe)
+						{
+						gold -= GuardBribe;
+						std::cout << "You have entered the city";
+						}
+					else
+					{
+						std::cout << "You don't have money";
 					}
+					}
+				else if (G=="No") 
+				{
+					std::cout << "You don't have enough money\nYou didn't enter the city";
 				}
-			else if (G=="No") 
-			{
-				std::cout << "You don't have enough money\nYou didn't enter the city";
-			}
-			else
-			{
-				  
-			}
+				else
+				{
+					std::cout << "Incorect input\nChoose yes or no\n";
+					
+				}
+
+			} 
+
 		}
 		
 	}
 }
+
+void Strategy() 
+{
+	struct NPC {
+		string Name;
+		int HP;
+		int DMG;
+	};
+
+	NPC m[3];
+
+	m[0].Name = "Sword";
+	m[0].HP = 75;
+	m[0].DMG = 15;
+
+	m[1].Name = "Crossider";
+	m[1].HP = 65;
+	m[1].DMG = 20;
+
+	m[2].Name = "Archer";
+	m[2].HP = 50;
+	m[2].DMG = 25;
+
+	NPC Player[3];
+	Player[0].Name = "Sword";
+	Player[0].HP = 75;
+	Player[0].DMG = 10;
+
+	Player[1].Name = "Crossider";
+	Player[1].HP = 65;
+	Player[1].DMG = 15;
+
+	Player[2].Name = "Archer";
+	Player[2].HP = 50;
+	Player[2].DMG = 20;
+
+	NPC PlayerHero;
+
+	string Hero;
+		cout << "Pick your character\n1 Swordsman		2 Crossider 	3 Archer\n";
+	
+	while (Hero != "1" || Hero != "2" || Hero != "3") {
+		cin >> Hero;
+
+		if (Hero == "1") {
+			cout << "You choosed a Swordsman";
+			PlayerHero = Player[0];
+		}
+		else if (Hero == "2") {
+			cout << "You shoosed a Crossider";
+			PlayerHero = Player[1];
+		}
+		else if (Hero == "3") {
+			cout << "You choosed an Archer";
+			PlayerHero = Player[2];
+		}
+		else {
+			cout << "incorect input\n Pick your character\n1 Swordsman		2 Crossider		H3 Archer\n";
+		}
+	}
+	cout << "Congratulations, you got your first hero\nYou can start your adventure or do it later\n1 Start		2 Later";
+
+	//for (int i = 0; i < size(Player);i++) {
+	
+	if (PlayerHero.Name == Player[0].Name) {
+		PlayerHero.DMG = Player[0].DMG * 1.5;
+	}
+	else if ( )
+}
+
+
 int main()
 {
 	setlocale(LC_ALL, "");
@@ -89,7 +170,9 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	Sesuriti();
+
+
+	//Sesuriti();
 
 	//srand(time(0));
 
@@ -136,7 +219,7 @@ int main()
 
 	//std::cout << finalDamage << " HP Orc = " << finalhp << "/" << hp;
 
-
+	
 
 
 }
