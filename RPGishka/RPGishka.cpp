@@ -115,51 +115,113 @@ void Strategy()
 	m[2].HP = 50;
 	m[2].DMG = 25;
 
-	NPC Player[3];
-	Player[0].Name = "Sword";
-	Player[0].HP = 75;
-	Player[0].DMG = 10;
-
-	Player[1].Name = "Crossider";
-	Player[1].HP = 65;
-	Player[1].DMG = 15;
-
-	Player[2].Name = "Archer";
-	Player[2].HP = 50;
-	Player[2].DMG = 20;
+	
 
 	NPC PlayerHero;
+	NPC Enemy;
 
+	string answer;
+	string answer2;
 	string Hero;
 		cout << "Pick your character\n1 Swordsman		2 Crossider 	3 Archer\n";
 	
-	while (Hero != "1" || Hero != "2" || Hero != "3") {
+	
 		cin >> Hero;
 
 		if (Hero == "1") {
-			cout << "You choosed a Swordsman";
-			PlayerHero = Player[0];
+			cout << "You choosed a Swordsman\n";
+			PlayerHero = m[0];
 		}
 		else if (Hero == "2") {
-			cout << "You shoosed a Crossider";
-			PlayerHero = Player[1];
+			cout << "You shoosed a Crossider\n";
+			PlayerHero = m[1];
 		}
 		else if (Hero == "3") {
-			cout << "You choosed an Archer";
-			PlayerHero = Player[2];
+			cout << "You choosed an Archer\n";
+			PlayerHero = m[2];
 		}
 		else {
 			cout << "incorect input\n Pick your character\n1 Swordsman		2 Crossider		H3 Archer\n";
 		}
-	}
-	cout << "Congratulations, you got your first hero\nYou can start your adventure or do it later\n1 Start		2 Later";
+	
+	cout << "Congratulations, you got your first hero\nYou can start your adventure or do it later\n1 Start		2 Later\n";
+
+		cin >> answer;
+		if (answer == "1") {
+			cout << "You started your first adventure!\n";
+		}
+		else if (answer == "2") {
+			cout << "You not stared your adventure\n";
+		}
+		else {
+			cout << "Incorect input\nYou can start your adventure or do it later\n1 Start		2 Later\n";
+		}
+	cout << "You traveled to the kingdom of Larion through the forest and encountered enemies along the way.\n";
+	srand(time(0));
+	int r = rand() % 2;
+	Enemy = m[r];
 
 	//for (int i = 0; i < size(Player);i++) {
 	
-	if (PlayerHero.Name == Player[0].Name) {
-		PlayerHero.DMG = Player[0].DMG * 1.5;
+	if (PlayerHero.Name == m[0].Name && Enemy.Name == m[2].Name) {
+		PlayerHero.DMG = m[0].DMG * 1.5;
+		cout << "Your damage is reduced by 50% vs Archer\n";
+
 	}
-	else if ( )
+	else if (PlayerHero.Name == m[1].Name && Enemy.Name == m[0].Name) {
+		PlayerHero.DMG = m[1].DMG * 1.5;
+		cout << "Your damage is increased by 50% vs Swordsman\n";
+
+	}
+	else if (PlayerHero.Name == m[2].Name && Enemy.Name == m[1].Name) {
+		PlayerHero.DMG = m[2].DMG * 1.5;
+		cout << "Your damage is increased by 50% vs Crossider\n";
+
+	}
+	else if (PlayerHero.Name == m[0].Name && Enemy.Name == m[1].Name) {
+		Enemy.DMG = m[1].DMG * 1.5;
+		cout << "Enemy damage is increased by 50% vs you\n";
+		
+	}
+	else if (PlayerHero.Name == m[1].Name && Enemy.Name == m[2].Name) {
+		Enemy.DMG = m[2].DMG * 1.5;
+		cout << "Enemy damage is increased by 50% vs you\n";
+
+	}
+	else if (PlayerHero.Name == m[2].Name && Enemy.Name == m[0].Name) {
+		PlayerHero.DMG = m[0].DMG * 1.5;
+		cout << "Enemy damage is increased by 50% vs you\n";
+	}
+	else {
+		cout << "No bonuses in this Battle";
+	}
+
+	cout << "Your" << PlayerHero.Name << "started a fight with" << Enemy.Name << "\n";
+	int EscapeChance;
+	
+	while (PlayerHero.HP > 0 || Enemy.HP > 0) {
+		EscapeChance = 1 + rand() % 40;
+		cout << "It's your turn\nChoose your action\n1 Attack		2 the escape\n";
+		while (answer2 != "1" || answer2 != "2") {
+			cin >> answer2;
+			if (answer2 == "1") {
+				cout << "You choosed Attack\n Your" << PlayerHero.Name << "hit a" << Enemy.Name;
+				Enemy.HP -= PlayerHero.DMG;
+			}
+			else {
+
+				cout << "You choosed escape";
+				if (EscapeChance > 40) {
+					cout << "Failure\nYou couldn't escape\n ";
+				}
+				else {
+					cout << "Success\n You were able to escape\n";
+				}
+			}
+		}
+		
+		
+	}
 }
 
 
@@ -170,7 +232,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-
+	Strategy();
 
 	//Sesuriti();
 
